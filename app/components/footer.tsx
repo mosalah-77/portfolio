@@ -17,7 +17,7 @@ export function Footer() {
   );
 }
 
-/** Stays on the page without a file until the final CV is ready; then set person.cv. */
+/** Downloads the CV. Without a file in person.cv the button stays, switched off. */
 export function CvLink({ className }: { className?: string }) {
   return person.cv ? (
     <a className={className} href={person.cv} download>Download CV</a>

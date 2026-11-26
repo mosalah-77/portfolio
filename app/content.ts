@@ -6,8 +6,8 @@ export const person = {
   email: "m.elmorshedy635@gmail.com",
   linkedin: "https://www.linkedin.com/in/mohamed-elmorshedy",
   github: "https://github.com/mosalah-77",
-  // Set to "/mohamed-elmorshedy-cv.pdf" once the final CV is in public/.
-  cv: null as string | null,
+  // The file lives in public/. Set to null to show the button without a file.
+  cv: "/mohamed-elmorshedy-cv.pdf" as string | null,
   intro:
     "Junior web developer in Cairo. I'm looking for a fully remote role in development, technical support or software implementation.",
 };
