@@ -37,7 +37,7 @@ test("project demo and code links go through the short-link domain", () => {
 
 test("the honeypot has no demo to open, and says it never left my machine", () => {
   const page = html("ssh-honeypot");
-  assert.ok(page.includes('href="https://github.com/mosalah-77/small-ssh-honeypot"'));
+  assert.ok(page.includes('href="https://go.mosalah-77.workers.dev/honeypot-code"'));
   assert.doesNotMatch(text("ssh-honeypot").split("Next project")[0], /Live demo/);
   assert.match(text("ssh-honeypot"), /only run on my own machine/);
 });

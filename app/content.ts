@@ -58,7 +58,7 @@ export const projects = {
     line: "A fake SSH server that records every password a bot tries and every command it types, and runs none of them.",
     stack: "Python and Paramiko, with a small dashboard",
     // Not a short link yet. It only runs on my own machine, so there is no demo to open.
-    code: "https://github.com/mosalah-77/small-ssh-honeypot",
+    code: go("honeypot-code"),
     color: "#0b0e17",
   },
 } satisfies Record<string, Project>;
