@@ -403,8 +403,9 @@ html:not(.js) .chat-tabs, .js .exchange:not(.is-open) { display: none; }
 }
 .chapters, .how { z-index: 0; }
 
-/* Thin strips at the screen edges, the colour of the page behind them. Safari tints its toolbars from these. */
-.edge { position: fixed; z-index: 40; top: 0; left: 0; right: 0; height: 4px; pointer-events: none; }
+/* Thin strips at the screen edges, the colour of the page behind them. Safari tints its toolbars from these.
+   Tested on an iPhone: it follows a 12px strip as its colour changes and ignores a 4px one. */
+.edge { position: fixed; z-index: 40; top: 0; left: 0; right: 0; height: 12px; pointer-events: none; }
 .edge.is-bottom { top: auto; bottom: 0; }
 .curtain { position: fixed; inset: 0; z-index: 60; pointer-events: none; }
 
