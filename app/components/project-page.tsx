@@ -13,7 +13,7 @@ export function ProjectPage({ project, image, next, still, children }: { project
     <div className={`project is-${project.slug}`} style={{ "--page": project.color } as React.CSSProperties}>
       <section className="project-hero">
         <div className="project-head">
-          <h1><Letters text={project.name} /></h1>
+          <h1 aria-label={project.name}><Letters text={project.name} /></h1>
           <div className="project-lead">
             <p>{project.line}</p>
             <p className="stack">{project.stack}</p>

@@ -69,11 +69,10 @@ export function Hero() {
   return (
     <section className="hero" ref={section}>
       <div className="hero-pin">
-        <h1>
-          <span className="sr">{person.name}</span>
+        <h1 aria-label={person.name}>
           <m.span className="hero-line" aria-hidden="true" style={on ? { x: first } : undefined}>
             <Letters text="Mohamed" /><span className="slot-wrap"><span className="slot" ref={slot} /></span>
-          </m.span>
+          </m.span>{" "}
           <m.span className="hero-line" aria-hidden="true" style={on ? { x: second } : undefined}>
             <Letters text="Elmorshedy" />
           </m.span>

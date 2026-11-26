@@ -16,6 +16,16 @@ test("every page has its own title, one h1 and the contact links", () => {
   }
 });
 
+test("each animated heading is in the page text once, and its label says the same", () => {
+  const names = { "": "Mohamed Elmorshedy", samepage: "Samepage", "oriel-and-reed": "Oriel & Reed", fixcity: "FixCity", "how-i-work": "How I work" };
+  for (const p of pages) {
+    const [, label, inner] = html(p).match(/<h1 aria-label="([^"]*)"[^>]*>([\s\S]*?)<\/h1>/);
+    const seen = inner.replace(/<[^>]+>/g, "").replaceAll("&amp;", "&").trim();
+    assert.equal(label.replaceAll("&amp;", "&"), names[p], p);
+    assert.equal(seen, names[p], p);
+  }
+});
+
 test("project demo and code links go through the short-link domain", () => {
   for (const [p, key] of [["samepage", "samepage"], ["oriel-and-reed", "oriel"], ["fixcity", "fixcity"]]) {
     for (const page of ["", p]) {

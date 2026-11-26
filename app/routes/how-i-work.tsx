@@ -10,7 +10,7 @@ export const meta = () => [
 export default function HowIWork() {
   return (
     <section className="how is-page">
-      <h1><Letters text="How I work" /></h1>
+      <h1 aria-label="How I work"><Letters text="How I work" /></h1>
       <Thread items={answers} />
     </section>
   );

@@ -59,12 +59,11 @@ export function useRise<T extends HTMLElement>(from: { y?: number; scale?: numbe
   return ref;
 }
 
-/** Splits a title into letters for the CSS entrance. Words stay whole, and screen readers get plain text. */
+/** Splits a title into letters for the CSS entrance. Words stay whole. Put the plain text on the heading as its aria-label. */
 export function Letters({ text }: { text: string }) {
   let n = 0;
   return (
     <>
-      <span className="sr">{text}</span>
       <span aria-hidden="true">
         {text.split(" ").map((word, w) => (
           <span key={w}>
