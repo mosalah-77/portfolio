@@ -23,6 +23,11 @@ html:not(.js), html.loaded, .project-hero, .project-body, .nav[data-face] {
 html { scroll-padding-top: 90px; background: var(--bg); -webkit-text-size-adjust: 100%; }
 .motion { scroll-behavior: smooth; }
 html { overflow-x: clip; }
+/* A project page is its project's colour to the edges, which is also where a phone browser takes its bar colour from. */
+html:has(.project.is-samepage), html:has(.project.is-samepage) body { background: var(--blue); }
+html:has(.project.is-oriel-and-reed), html:has(.project.is-oriel-and-reed) body { background: var(--cream); }
+html:has(.project.is-fixcity), html:has(.project.is-fixcity) body { background: var(--navy); }
+html:has(.project.is-ssh-honeypot), html:has(.project.is-ssh-honeypot) body { background: var(--night); }
 body { font: 400 1.0625rem/1.55 Figtree, Verdana, sans-serif; color: var(--ink); background: var(--bg); overflow-x: clip; }
 h1, h2 { font-weight: 600; letter-spacing: -0.03em; line-height: 1.02; text-wrap: balance; }
 p { text-wrap: pretty; }
@@ -273,7 +278,8 @@ main:focus { outline: none; }
 
 .motion .chapter { margin-top: -1px; }
 @media (min-height: 680px) {
-  .motion .chapter { position: sticky; top: 0; height: 100svh; }
+  /* The colour runs to the large viewport, so no page shows under a chapter when a phone's browser bars shrink. */
+  .motion .chapter { position: sticky; top: 0; height: 100lvh; }
   .motion .chapter-in { height: 100svh; }
   .motion .chapter:not(.is-last) { margin-bottom: 55vh; }
   .motion .chapter-hold { height: 70vh; }
