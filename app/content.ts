@@ -161,6 +161,23 @@ export const fontLinks = (...names: string[]) => () =>
 export const pageTitle = (t?: string) =>
   t ? `${t} | ${person.name}` : `${person.name} | Junior web developer`;
 
+const site = "https://portfolio.mosalah-77.workers.dev";
+
+/** A page's title and description, plus the tags that give its link a preview card when shared. */
+export const pageMeta = (path: string, card: string, description: string, title?: string) => [
+  { title: pageTitle(title) },
+  { name: "description", content: description },
+  { property: "og:title", content: pageTitle(title) },
+  { property: "og:description", content: description },
+  { property: "og:type", content: "website" },
+  { property: "og:url", content: site + path },
+  { property: "og:image", content: `${site}/og/${card}.png` },
+  { property: "og:image:width", content: "1200" },
+  { property: "og:image:height", content: "627" },
+  { name: "twitter:card", content: "summary_large_image" },
+  { name: "twitter:image", content: `${site}/og/${card}.png` },
+];
+
 /** Background each route opens on, so the transition can arrive in the same colour. */
 export const routeColor = (path: string) =>
   Object.values(projects).find((p) => path.startsWith(`/${p.slug}`))?.color ?? "#eef4fc";

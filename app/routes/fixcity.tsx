@@ -2,12 +2,12 @@ import { useScroll } from "motion/react";
 import { useRef } from "react";
 import { Stages } from "../components/chapters";
 import { Facts, ProjectPage, Story } from "../components/project-page";
-import { pageTitle, pictures, projects, fontLinks } from "../content";
+import { pictures, projects, fontLinks, pageMeta } from "../content";
 import { useMotionOn } from "../motion";
 
 const { fixcity, honeypot } = projects;
 export const links = fontLinks("work-sans");
-export const meta = () => [{ title: pageTitle(fixcity.name) }, { name: "description", content: fixcity.line }];
+export const meta = () => pageMeta(`/${fixcity.slug}`, "fixcity", fixcity.line, fixcity.name);
 
 export default function FixCity() {
   return (

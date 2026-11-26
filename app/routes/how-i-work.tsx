@@ -1,11 +1,8 @@
 import { Thread } from "../components/thread";
-import { answers, pageTitle } from "../content";
+import { answers, pageMeta } from "../content";
 import { Letters } from "../motion";
 
-export const meta = () => [
-  { title: pageTitle("How I work") },
-  { name: "description", content: "Questions I get asked about how I build software, and my answers." },
-];
+export const meta = () => pageMeta("/how-i-work", "portfolio", "Questions I get asked about how I build software, and my answers.", "How I work");
 
 export default function HowIWork() {
   return (

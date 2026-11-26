@@ -1,9 +1,9 @@
 import { Facts, ProjectPage, Story } from "../components/project-page";
 import { ReviewReplay } from "../components/review-replay";
-import { pageTitle, pictures, projects } from "../content";
+import { pictures, projects, pageMeta } from "../content";
 
 const { samepage, oriel } = projects;
-export const meta = () => [{ title: pageTitle(samepage.name) }, { name: "description", content: samepage.line }];
+export const meta = () => pageMeta(`/${samepage.slug}`, "samepage", samepage.line, samepage.name);
 
 export default function Samepage() {
   return (
