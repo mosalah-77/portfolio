@@ -10,8 +10,8 @@ type Img = { src: string; srcSet?: string; sizes?: string; alt: string; width: n
 
 export function ProjectPage({ project, image, next, still, children }: { project: Project; image: Img; next: Project; still?: boolean; children: React.ReactNode }) {
   return (
-    <div className={`project is-${project.slug}`} style={{ "--page": project.color } as React.CSSProperties}>
-      <section className="project-hero" data-nav={project.slug}>
+    <div data-nav={project.slug} className={`project is-${project.slug}`} style={{ "--page": project.color } as React.CSSProperties}>
+      <section className="project-hero">
         <div className="project-head">
           <h1 aria-label={project.name}><Letters text={project.name} /></h1>
           <div className="project-lead">

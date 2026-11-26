@@ -15,7 +15,7 @@
 }
 /* The projects' own typefaces. The home page only asks for them once it has loaded, so they never hold up the first screen.
    A project page and a dressed top bar need theirs straight away, and so does a page without JavaScript. */
-html:not(.js), html.loaded, .project-hero, .nav[data-face] {
+html:not(.js), html.loaded, .project-hero, .project-body, .nav[data-face] {
   --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace; --hanken: "Hanken Grotesk", Figtree, sans-serif;
   --work: "Work Sans", Figtree, sans-serif; --bodoni: "Bodoni Moda", Georgia, serif;
 }
@@ -342,6 +342,21 @@ html:not(.js) .chat-tabs, .js .exchange:not(.is-open) { display: none; }
 .project .stages { margin-top: 44px; }
 .project-body .stage-track { background: var(--line); }
 .project-body .stage-track span { background: var(--navy); }
+
+/* The rest of a project's page keeps that project's colours, type and corners. Samepage's are the site's own. */
+.project.is-oriel-and-reed .project-body { background: var(--cream); color: #24261c; font-family: var(--hanken); --line: #d6cfbd; --quiet: #5d5f50; --btn: var(--olive); --btn-hover: #24261c; --focus: var(--olive); }
+.is-oriel-and-reed .project-body :is(h2, dt) { font-family: var(--bodoni); font-weight: 500; letter-spacing: -0.03em; }
+.is-oriel-and-reed .project-body dt { font-size: 1.4375rem; }
+.is-oriel-and-reed .facts dl > div { border-top-width: 1px; }
+.project.is-fixcity .project-body { background: var(--navy); color: #fff; font-family: var(--work); --line: rgb(255 255 255 / 0.2); --quiet: #b9c4d0; --btn: var(--gold); --btn-ink: var(--navy); --btn-hover: #f0d694; --focus: var(--gold); }
+.is-fixcity .project-body :is(h2, dt) { font-weight: 700; letter-spacing: -0.035em; }
+.is-fixcity .project-body .stage-track span { background: var(--gold); }
+.project.is-ssh-honeypot .project-body { background: var(--night); color: #e8ecf8; --line: #232c4a; --quiet: #9aa5c2; --btn: var(--cyan); --btn-ink: var(--night); --btn-hover: #fff; --focus: var(--cyan); }
+.is-ssh-honeypot .project-body h2 { font: 700 clamp(1.5rem, 1.05rem + 1.5vw, 2.375rem)/1.15 var(--mono); letter-spacing: -0.05em; }
+.is-ssh-honeypot .project-body h2::before { content: "// "; color: var(--pink); }
+.is-ssh-honeypot .project-body dt { font: 700 1rem/1.5 var(--mono); color: var(--cyan); }
+.is-ssh-honeypot .facts dl > div { border-top-width: 1px; }
+.project-body .fine { color: var(--quiet); }
 
 .rooms { background: var(--cream); padding-block: 72px; }
 .rooms ul { display: flex; gap: 24px; width: max-content; padding-inline: var(--gutter); }

@@ -33,6 +33,7 @@ The site is set in Figtree, self-hosted, 400 to 600. Each project's chapter and 
 | Chapter words | Each chapter's words arrive in the project's own manner. Samepage is quick and exact. Oriel & Reed fades slowly while its name settles into its spacing. FixCity pops in with a small overshoot, like a phone app. The honeypot uses no easing: its name is typed, the lines switch on and the panels flicker up |
 | Chat | Each question is its own chat. Picking one opens it, and the answers arrive one at a time after typing dots |
 | Project pages | Title letters, arriving as the chapter does (risen, faded, dropped or typed), the picture growing into place, section reveals. Oriel & Reed walks sideways through its rooms |
+| Project pages, below the title | The rest of the page keeps the project's colours, typeface and corners, and the top bar stays dressed for it |
 | Between pages | The next page's colour rises over this one, then lifts |
 | Contact | The name slides up from below the edge |
 
