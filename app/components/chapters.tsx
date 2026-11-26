@@ -40,11 +40,11 @@ function Cover({ next, slug, className, children }: { next?: Mark; slug: string;
   const covered = useScroll({ target: next ?? own, offset: ["start end", "start start"] }).scrollYProgress;
   const scale = useRange(covered, [0, 1], [1, 0.9]);
   const opacity = useRange(covered, [0.2, 1], [1, 0.35]);
-  // Once the next chapter covers this one it is taken off screen entirely. It is still pinned there,
-  // and Safari colours its toolbar from whichever pinned layer it finds first.
-  const visibility = useTransform(covered, (v) => (v >= 1 ? "hidden" : "visible"));
+  // Once the next chapter covers this one it lets go of the screen and sits back in the page above. Left pinned,
+  // Safari colours its toolbar from the first pinned layer it finds, even a hidden one.
+  const position = useTransform(covered, (v) => (v >= 1 ? "relative" : "sticky"));
   return (
-    <m.article style={on && next ? { visibility } : undefined} ref={box} data-nav={slug} data-in={on ? (seen ? "1" : "0") : undefined} className={`chapter ${className}${next ? "" : " is-last"}`}>
+    <m.article style={on && next ? { position } : undefined} ref={box} data-nav={slug} data-in={on ? (seen ? "1" : "0") : undefined} className={`chapter ${className}${next ? "" : " is-last"}`}>
       <m.div className="chapter-in" style={on && next ? { scale, opacity } : undefined}>{children}</m.div>
       {!next && <div ref={own} />}
     </m.article>

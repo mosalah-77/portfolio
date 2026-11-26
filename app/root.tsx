@@ -94,10 +94,11 @@ export default function App() {
 
 const curtain = {
   covered: { clipPath: "inset(0% 0% 0% 0%)" },
-  // Hidden once it has lifted: Safari tints its toolbar with the colour of any fixed layer at the screen edge, even a clipped one.
-  open: { clipPath: "inset(0% 0% 100% 0%)", transition: { duration: 0.6, ease: easeOut, delay: 0.05 }, transitionEnd: { visibility: "hidden" } },
+  // Removed from layout once it has lifted: Safari tints its toolbar with the colour of any fixed layer at the
+  // screen edge, and still counts one that is clipped, transparent or hidden.
+  open: { clipPath: "inset(0% 0% 100% 0%)", transition: { duration: 0.6, ease: easeOut, delay: 0.05 }, transitionEnd: { display: "none" } },
   leave: (to: string) => ({
-    visibility: "visible",
+    display: "block",
     backgroundColor: to,
     clipPath: ["inset(100% 0% 0% 0%)", "inset(0% 0% 0% 0%)"],
     transition: { duration: 0.55, ease: [0.76, 0, 0.24, 1] as const, backgroundColor: { duration: 0 } },
