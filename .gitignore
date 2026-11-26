@@ -1,0 +1,11 @@
+node_modules
+build
+.react-router
+.wrangler
+.DS_Store
+.playwright-mcp
+.env*
+.dev.vars*
+# Local notes
+PRODUCT.md
+tests/private.test.mjs

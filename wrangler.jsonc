@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "portfolio",
+  // A deploy always rebuilds and must pass the tests, so it cannot ship without its headers.
+  "build": { "command": "npm run build && npm test" },
+  "send_metrics": false,
+  "workers_dev": true,
+  "preview_urls": false,
+  "compatibility_date": "2026-11-20",
+  "assets": {
+    "directory": "./build/client",
+    "html_handling": "drop-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}
