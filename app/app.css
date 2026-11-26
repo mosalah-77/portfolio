@@ -210,7 +210,14 @@ main:focus { outline: none; }
 :is(.chapter.is-oriel, .is-oriel-and-reed .project-hero) .btn { border-radius: 0; }
 .chapter.is-fixcity, .is-fixcity .project-hero, .next.is-fixcity { font-family: var(--work); }
 :is(.chapter.is-fixcity, .is-fixcity .project-hero, .next.is-fixcity) :is(h1, h2, strong) { font-weight: 700; letter-spacing: -0.04em; }
-.chapter.is-ssh-honeypot :is(h2, .stack, .btn, .more), .is-ssh-honeypot .project-hero :is(h1, .stack, .btn), .next.is-ssh-honeypot { font-family: var(--mono); }
+.chapter.is-ssh-honeypot, .is-ssh-honeypot .project-hero, .is-ssh-honeypot .project-body, .next.is-ssh-honeypot { font-family: var(--mono); }
+/* Monospace runs wide, so its running text is set smaller than the other projects'. */
+.chapter.is-ssh-honeypot .chapter-copy > p:first-of-type, .is-ssh-honeypot .project-lead > p:first-child { font-size: clamp(0.9375rem, 0.86rem + 0.3vw, 1.0625rem); line-height: 1.65; }
+.is-ssh-honeypot .story > div, .is-ssh-honeypot .facts dd { font-size: clamp(0.875rem, 0.82rem + 0.28vw, 1rem); line-height: 1.75; }
+.is-ssh-honeypot .project-body .fine { font-size: 0.8125rem; }
+.is-ssh-honeypot .project-image img { border-radius: 0; }
+:is(.chapter.is-oriel, .project.is-oriel-and-reed) img { border-radius: 0; }
+.next.is-oriel-and-reed { font-family: var(--hanken); }
 .chapter.is-ssh-honeypot h2 { font-size: clamp(2rem, 3.6vw, 3.6rem); font-weight: 700; letter-spacing: -0.06em; word-spacing: -0.25em; white-space: nowrap; }
 .is-ssh-honeypot .project-head h1 { font-size: clamp(2.75rem, 7.6vw, 7.5rem); font-weight: 700; letter-spacing: -0.07em; word-spacing: -0.25em; }
 .next.is-ssh-honeypot strong { font-size: clamp(2.75rem, 10vw, 9rem); font-weight: 700; letter-spacing: -0.07em; }
@@ -380,6 +387,8 @@ html:not(.js) .chat-tabs, .js .exchange:not(.is-open) { display: none; }
 .footer ul { display: flex; flex-wrap: wrap; gap: 8px 40px; margin-top: 40px; font-size: 1.1875rem; font-weight: 500; }
 .footer a { display: inline-block; padding: 8px 0; text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 2px no-repeat; transition: background-size 0.35s var(--out); }
 .footer .plain { padding: 8px 0; }
+.footer .fine { margin-top: 28px; max-width: 34em; opacity: 0.78; }
+.footer .fine a { padding: 0; background-position-y: 100%; }
 @media (hover: hover) { .footer a:hover { background-size: 0 2px; background-position: 100% 100%; } }
 .giant { margin: 90px 0 0; font-size: calc((100vw - var(--gutter) * 2) / 9.5); font-weight: 600; letter-spacing: -0.05em; line-height: 0.78; white-space: nowrap; color: var(--blue); }
 @supports (animation-timeline: view()) {

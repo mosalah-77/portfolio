@@ -35,9 +35,9 @@ export default function Honeypot() {
         <p>This is a small learning project. A person poking at the shell would see through it quickly: there are no files to read and only a handful of commands answer.</p>
         <p>It has only run on my own machine, so nothing here was caught from a real attacker. The README lists the other limits and what it would take to put it on the internet safely.</p>
       </Story>
-      <Story title="My part">
+      <Story title="My decisions">
         <p>I wanted a small security project I could run and explain. I chose a real SSH handshake over a plain socket, because nothing less gets far enough to see a password, and I set the rule that it stays on my own machine.</p>
-        <p>I decided how far the decoy goes and set the dashboard's look. I tested each version by hand in a terminal: guessing passwords, getting cut off, logging in with a weak one and typing into the fake shell while the log filled up. I work with AI coding tools, and the README explains how it was made.</p>
+        <p>I decided how far the decoy goes and set the dashboard's look. I tested each version by hand in a terminal: guessing passwords, getting cut off, logging in with a weak one and typing into the fake shell while the log filled up.</p>
       </Story>
     </ProjectPage>
   );

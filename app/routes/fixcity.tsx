@@ -28,8 +28,8 @@ export default function FixCity() {
           { name: "A photo problem on a crew's first update", text: "Photos can now go with the first update, and stay beside the entry they belong to." },
         ]}
       />
-      <Story title="My part">
-        <p>FixCity started as a six-person graduation project at my university. I worked on the user flow, shared the technical direction and built parts of the frontend, then extended it into a browser demo with AI coding tools. The team and the original repository are credited in the README.</p>
+      <Story title="A team project">
+        <p>FixCity started as a six-person graduation project at my university. I worked on the user flow, shared the technical direction and built parts of the frontend, then extended it into a browser demo. The team and the original repository are credited in the README.</p>
         <p className="fine">A student prototype with made-up data. It is not an official government service.</p>
       </Story>
     </ProjectPage>

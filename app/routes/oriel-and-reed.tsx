@@ -25,8 +25,8 @@ export default function Oriel() {
           { name: "Motion", text: "The hero moves with the scroll in plain CSS. Phones and reduced-motion visitors get it still." },
         ]}
       />
-      <Story title="My part">
-        <p>I chose the project, set the goals and the visual design, then made CSS and TypeScript changes by hand and checked each one in the browser. I work with AI coding tools, and the README explains how it was made.</p>
+      <Story title="My decisions">
+        <p>I chose the project, set the goals and the visual design, then made CSS and TypeScript changes by hand and checked each one in the browser.</p>
         <p className="fine">Photographs by Spacejoy and Ali Moradi on Unsplash, used as reference images.</p>
       </Story>
     </ProjectPage>

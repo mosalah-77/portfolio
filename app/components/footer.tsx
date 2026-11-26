@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { person } from "../content";
 import { useRise } from "../motion";
 
@@ -12,6 +13,7 @@ export function Footer() {
         <li><a href={person.github}>GitHub</a></li>
         <li><CvLink /></li>
       </ul>
+      <p className="fine" data-rise>I work with AI coding tools. Each project's README explains how it was made, and <Link to="/how-i-work">how I work</Link> covers the rest.</p>
       <p className="giant" aria-hidden="true">{person.name}</p>
     </footer>
   );

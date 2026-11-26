@@ -35,8 +35,9 @@ export default function Samepage() {
           { name: "Approval points at one version", text: "Answers are never edited in place, so the handoff reads exactly what was approved." },
         ]}
       />
-      <Story title="My part">
-        <p>I set the scope, picked the stack, took the design through several rounds and decided what shipped. I work with AI coding tools, and the README explains how it was made. The people and companies in the demo are made up.</p>
+      <Story title="My decisions">
+        <p>I set the scope, picked the stack, took the design through several rounds and decided what shipped.</p>
+        <p className="fine">The people and companies in the demo are made up.</p>
       </Story>
     </ProjectPage>
   );
