@@ -14,7 +14,7 @@ export const links = () => [
 ];
 
 // Runs before first paint. Without it (no JavaScript, or reduced motion) the page is the plain layout.
-const motionFlag = `document.documentElement.classList.add("js");matchMedia("(prefers-reduced-motion: reduce), (max-height: 479px)").matches||document.documentElement.classList.add("motion");history.scrollRestoration="manual"`;
+const motionFlag = `document.documentElement.classList.add("js");matchMedia("(prefers-reduced-motion: reduce), (max-height: 479px)").matches||document.documentElement.classList.add("motion");history.scrollRestoration="manual";addEventListener("load",()=>document.documentElement.classList.add("loaded"))`;
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (

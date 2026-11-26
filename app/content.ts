@@ -154,6 +154,10 @@ export const answers: QA[] = [
   },
 ];
 
+/** A page whose title is set in its own typeface asks for the file early, so the title doesn't change face after it shows. */
+export const fontLinks = (...names: string[]) => () =>
+  names.map((n) => ({ rel: "preload", href: `/fonts/${n}.woff2`, as: "font", type: "font/woff2", crossOrigin: "anonymous" as const }));
+
 export const pageTitle = (t?: string) =>
   t ? `${t} | ${person.name}` : `${person.name} | Junior web developer`;
 

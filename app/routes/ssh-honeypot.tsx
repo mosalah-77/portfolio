@@ -2,10 +2,11 @@ import { useScroll } from "motion/react";
 import { useRef } from "react";
 import { Session } from "../components/chapters";
 import { Facts, ProjectPage, Story } from "../components/project-page";
-import { pageTitle, pictures, projects } from "../content";
+import { pageTitle, pictures, projects, fontLinks } from "../content";
 import { useMotionOn } from "../motion";
 
 const { honeypot, samepage } = projects;
+export const links = fontLinks("jetbrains-mono");
 export const meta = () => [{ title: pageTitle(honeypot.name) }, { name: "description", content: honeypot.line }];
 
 export default function Honeypot() {

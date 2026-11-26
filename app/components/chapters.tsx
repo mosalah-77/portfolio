@@ -1,4 +1,4 @@
-import { useScroll, useTransform, type MotionValue } from "motion/react";
+import { useInView, useScroll, useTransform, type MotionValue } from "motion/react";
 import * as m from "motion/react-m";
 import { useRef } from "react";
 import { Link } from "react-router";
@@ -30,14 +30,18 @@ const full = { get: () => 1 };
 /** 0 to 1 while the chapter slides in. */
 const useEnter = (mark: Mark) => useScroll({ target: mark, offset: ["start end", "start start"] }).scrollYProgress;
 
-function Cover({ next, className, children }: { next?: Mark; className: string; children: React.ReactNode }) {
+function Cover({ next, slug, className, children }: { next?: Mark; slug: string; className: string; children: React.ReactNode }) {
   const on = useMotionOn();
   const own = useRef<HTMLDivElement>(null); // the last chapter is never covered
+  // Each chapter brings its words in its own way (app.css). The attribute only exists once motion is on,
+  // so the words are never hidden in the HTML.
+  const box = useRef<HTMLElement>(null);
+  const seen = useInView(box, { amount: 0.3, once: true });
   const covered = useScroll({ target: next ?? own, offset: ["start end", "start start"] }).scrollYProgress;
   const scale = useRange(covered, [0, 1], [1, 0.9]);
   const opacity = useRange(covered, [0.2, 1], [1, 0.35]);
   return (
-    <article className={`chapter ${className}${next ? "" : " is-last"}`}>
+    <article ref={box} data-nav={slug} data-in={on ? (seen ? "1" : "0") : undefined} className={`chapter ${className}${next ? "" : " is-last"}`}>
       <m.div className="chapter-in" style={on && next ? { scale, opacity } : undefined}>{children}</m.div>
       {!next && <div ref={own} />}
     </article>
@@ -63,7 +67,7 @@ function Samepage({ mark, next }: { mark: Mark; next: Mark }) {
   const y = useRange(t, [0, 1], [220, 0]);
   const scale = useRange(t, [0, 1], [0.82, 1]);
   return (
-    <Cover next={next} className="is-samepage">
+    <Cover next={next} slug={projects.samepage.slug} className="is-samepage">
       <Copy project={projects.samepage} />
       <div className="persp">
         <m.img style={on ? { rotateX, y, scale } : undefined} {...pictures.samepage} loading="lazy" alt="Samepage: the studio's questions on the left, the client's answers on the right and a panel showing how many answers are left." />
@@ -78,7 +82,7 @@ function Oriel({ mark, next }: { mark: Mark; next: Mark }) {
   const clipPath = useRange(t, [0.15, 1], ["inset(22% 34% 22% 34% round 16px)", "inset(0% 0% 0% 0% round 0px)"]);
   const scale = useRange(t, [0.15, 1], [1.35, 1]);
   return (
-    <Cover next={next} className="is-oriel">
+    <Cover next={next} slug={projects.oriel.slug} className="is-oriel">
       <m.div className="oriel-photo" style={on ? { clipPath } : undefined}>
         <m.img style={on ? { scale } : undefined} {...pictures.olive} loading="lazy" alt="An olive sofa and a reading chair by a window." />
       </m.div>
@@ -94,7 +98,7 @@ function FixCity({ mark, next }: { mark: Mark; next: Mark }) {
   const y = useRange(t, [0.2, 1], [360, 0]);
   const rotate = useRange(t, [0.2, 1], [9, 0]);
   return (
-    <Cover next={next} className="is-fixcity">
+    <Cover next={next} slug={projects.fixcity.slug} className="is-fixcity">
       <div className="phone-wrap">
         <m.img className="phone" style={on ? { y, rotate } : undefined} {...pictures.phone} loading="lazy" alt="FixCity's home screen, with a button to report a problem and a grid of problem types." />
       </div>
@@ -108,15 +112,11 @@ function FixCity({ mark, next }: { mark: Mark; next: Mark }) {
 
 function Honeypot({ mark }: { mark: Mark }) {
   const on = useMotionOn();
-  const t = useEnter(mark);
   const { scrollYProgress: hold } = useScroll({ target: mark, offset: ["start 0.45", "start -0.5"] });
-  const y = useRange(t, [0.2, 1], [240, 0]);
   return (
-    <Cover className="is-ssh-honeypot">
+    <Cover slug={projects.honeypot.slug} className="is-ssh-honeypot">
       <Copy project={projects.honeypot} />
-      <m.div style={on ? { y } : undefined}>
-        <Session t={on ? hold : undefined} />
-      </m.div>
+      <Session t={on ? hold : undefined} />
     </Cover>
   );
 }

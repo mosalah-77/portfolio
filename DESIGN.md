@@ -20,7 +20,7 @@ The hero replays a Samepage design review, and each project then takes the whole
 
 ## Type
 
-Figtree, self-hosted, 400 to 600. Oriel & Reed's name is set in Bodoni Moda because that is the project's own face.
+The site is set in Figtree, self-hosted, 400 to 600. Each project's chapter and page title use the typefaces of the project itself: Figtree for Samepage, Bodoni Moda and Hanken Grotesk for Oriel & Reed, Work Sans for FixCity, and JetBrains Mono for the honeypot, whose dashboard is monospace. The home page fetches the project typefaces only after it has loaded, and each project page asks for its own early.
 
 ## Motion
 
@@ -29,8 +29,10 @@ Figtree, self-hosted, 400 to 600. Oriel & Reed's name is set in Bodoni Moda beca
 | Hero, on load | The name rises letter by letter (CSS, so it does not wait for JavaScript) |
 | Hero, on scroll | The two names part, the small screen grows out of the headline, and the review plays. It runs backwards too |
 | Projects | Each pins; the next slides over while the covered one falls back. Samepage tilts up, the Oriel photo opens from a small window, the FixCity phone rises and its four stages fill in, and the honeypot types out one visit beside the log it leaves |
+| Top bar | Takes the colours, typeface and corners of the project behind it, and goes back to the site's own look elsewhere. The colour eases across while the words dip out to change typeface. The bar is lightly frosted on the site's own look and on FixCity, and solid on Oriel & Reed and the honeypot |
+| Chapter words | Each chapter's words arrive in the project's own manner. Samepage is quick and exact. Oriel & Reed fades slowly while its name settles into its spacing. FixCity pops in with a small overshoot, like a phone app. The honeypot uses no easing: its name is typed, the lines switch on and the panels flicker up |
 | Chat | Each question is its own chat. Picking one opens it, and the answers arrive one at a time after typing dots |
-| Project pages | Title letters, the picture growing into place, section reveals. Oriel & Reed walks sideways through its rooms |
+| Project pages | Title letters, arriving as the chapter does (risen, faded, dropped or typed), the picture growing into place, section reveals. Oriel & Reed walks sideways through its rooms |
 | Between pages | The next page's colour rises over this one, then lifts |
 | Contact | The name slides up from below the edge |
 

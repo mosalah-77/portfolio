@@ -1,8 +1,9 @@
 import { Facts, ProjectPage, Story } from "../components/project-page";
 import { Rooms } from "../components/rooms";
-import { pageTitle, pictures, projects } from "../content";
+import { pageTitle, pictures, projects, fontLinks } from "../content";
 
 const { oriel, fixcity } = projects;
+export const links = fontLinks("bodoni-moda-500", "hanken-grotesk-400");
 export const meta = () => [{ title: pageTitle(oriel.name) }, { name: "description", content: oriel.line }];
 
 export default function Oriel() {

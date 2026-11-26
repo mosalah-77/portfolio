@@ -44,4 +44,4 @@ The site has no server code, forms, cookies or tracking. After each build, `scri
 
 ## Credits
 
-Figtree and Bodoni Moda are under the SIL Open Font License. Room photographs are by Spacejoy and Ali Moradi on Unsplash, used as reference images. FixCity began as a six-person team project; the team is credited in [its README](https://github.com/mosalah-77/FixCity).
+Figtree, Bodoni Moda, Hanken Grotesk, Work Sans and JetBrains Mono are under the SIL Open Font License. Room photographs are by Spacejoy and Ali Moradi on Unsplash, used as reference images. FixCity began as a six-person team project; the team is credited in [its README](https://github.com/mosalah-77/FixCity).
