@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
 
-const pages = ["", "samepage", "oriel-and-reed", "fixcity", "how-i-work"];
+const pages = ["", "samepage", "oriel-and-reed", "fixcity", "ssh-honeypot", "how-i-work"];
 const html = (p) => readFileSync(new URL(`../build/client/${p ? `${p}/` : ""}index.html`, import.meta.url), "utf8");
 const text = (p) => html(p).replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/g, "").replace(/<[^>]+>/g, " ").replaceAll("&#x27;", "'").replaceAll("&amp;", "&");
 
@@ -17,7 +17,7 @@ test("every page has its own title, one h1 and the contact links", () => {
 });
 
 test("each animated heading is in the page text once, and its label says the same", () => {
-  const names = { "": "Mohamed Elmorshedy", samepage: "Samepage", "oriel-and-reed": "Oriel & Reed", fixcity: "FixCity", "how-i-work": "How I work" };
+  const names = { "": "Mohamed Elmorshedy", samepage: "Samepage", "oriel-and-reed": "Oriel & Reed", fixcity: "FixCity", "ssh-honeypot": "SSH Honeypot", "how-i-work": "How I work" };
   for (const p of pages) {
     const [, label, inner] = html(p).match(/<h1 aria-label="([^"]*)"[^>]*>([\s\S]*?)<\/h1>/);
     const seen = inner.replace(/<[^>]+>/g, "").replaceAll("&amp;", "&").trim();
@@ -33,6 +33,13 @@ test("project demo and code links go through the short-link domain", () => {
       assert.ok(html(page).includes(`href="https://go.mosalah-77.workers.dev/${key}-code"`), `${page} code`);
     }
   }
+});
+
+test("the honeypot has no demo to open, and says it never left my machine", () => {
+  const page = html("ssh-honeypot");
+  assert.ok(page.includes('href="https://github.com/mosalah-77/small-ssh-honeypot"'));
+  assert.doesNotMatch(text("ssh-honeypot").split("Next project")[0], /Live demo/);
+  assert.match(text("ssh-honeypot"), /only run on my own machine/);
 });
 
 test("made-up companies are labelled", () => {

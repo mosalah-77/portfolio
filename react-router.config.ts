@@ -4,5 +4,5 @@ import type { Config } from "@react-router/dev/config";
 // and deploys as static files.
 export default {
   ssr: false,
-  prerender: ["/", "/samepage", "/oriel-and-reed", "/fixcity", "/how-i-work", "/404"],
+  prerender: ["/", "/samepage", "/oriel-and-reed", "/fixcity", "/ssh-honeypot", "/how-i-work", "/404"],
 } satisfies Config;

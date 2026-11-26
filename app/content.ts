@@ -17,7 +17,8 @@ export type Project = {
   name: string;
   line: string;
   stack: string;
-  demo: string;
+  /** Left out when there is nothing to open in a browser. */
+  demo?: string;
   code: string;
   /** Page colour, used by the page itself and by the transition into it. */
   color: string;
@@ -51,6 +52,15 @@ export const projects = {
     code: go("fixcity-code"),
     color: "#16293d",
   },
+  honeypot: {
+    slug: "ssh-honeypot",
+    name: "SSH Honeypot",
+    line: "A fake SSH server that records every password a bot tries and every command it types, and runs none of them.",
+    stack: "Python and Paramiko, with a small dashboard",
+    // Not a short link yet. It only runs on my own machine, so there is no demo to open.
+    code: "https://github.com/mosalah-77/small-ssh-honeypot",
+    color: "#0b0e17",
+  },
 } satisfies Record<string, Project>;
 
 /** The review that is replayed in the hero and on the Samepage page. */
@@ -67,6 +77,27 @@ export const fixcityStages = [
   { name: "Resolved", text: "A note and a photo close the report." },
 ];
 
+/** One visit to the honeypot: what the visitor sees, and what the log keeps. Passwords never show on the visitor's side. */
+export const honeypotSession = {
+  seen: [
+    "$ ssh -p 2222 root@127.0.0.1",
+    "root@127.0.0.1's password:",
+    "Permission denied, please try again.",
+    "root@127.0.0.1's password:",
+    "root@ubuntu:~# whoami",
+    "root",
+    "root@ubuntu:~# cat /etc/shadow",
+    "cat: /etc/shadow: No such file or directory",
+  ],
+  // `at` is the visitor's line that causes the entry.
+  logged: [
+    { at: 2, kind: "login", text: "root / nope", note: "refused" },
+    { at: 4, kind: "login", text: "root / 123456", note: "let in" },
+    { at: 5, kind: "command", text: "whoami" },
+    { at: 7, kind: "command", text: "cat /etc/shadow" },
+  ],
+};
+
 /** Two sizes of a picture; the browser takes the one that fits. `sizes` is how wide it is shown. */
 const picture = (name: string, small: number, width: number, height: number, sizes = "100vw") => ({
   src: `/img/${name}-${width}.webp`,
@@ -81,6 +112,7 @@ export const pictures = {
   olive: picture("oriel-olive-room", 640, 1280, 853),
   kitchen: picture("oriel-timber-kitchen", 640, 1280, 853, "(max-width: 760px) 93vw, 60vw"),
   bedroom: picture("oriel-linen-bedroom", 640, 1280, 853, "(max-width: 760px) 93vw, 60vw"),
+  dashboard: picture("honeypot-dashboard", 640, 1280, 900, "(max-width: 760px) 93vw, 90vw"),
   phone: picture("fixcity-phone", 390, 780, 1688, "(max-width: 760px) 66vw, 330px"),
 };
 

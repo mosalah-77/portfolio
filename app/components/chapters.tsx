@@ -2,13 +2,13 @@ import { useScroll, useTransform, type MotionValue } from "motion/react";
 import * as m from "motion/react-m";
 import { useRef } from "react";
 import { Link } from "react-router";
-import { fixcityStages, pictures, projects, type Project } from "../content";
+import { fixcityStages, honeypotSession, pictures, projects, type Project } from "../content";
 import { useMotionOn, useRange } from "../motion";
 import { ProjectLinks } from "./links";
 
 /** Full-screen projects. Each pins, and the next one slides over it while the covered one falls back. */
 export function Chapters() {
-  const marks = [useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null)];
+  const marks = [useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null)];
   return (
     <div className="chapters" id="projects">
       <div ref={marks[0]} />
@@ -16,13 +16,16 @@ export function Chapters() {
       <div ref={marks[1]} />
       <Oriel mark={marks[1]} next={marks[2]} />
       <div ref={marks[2]} />
-      <FixCity mark={marks[2]} />
+      <FixCity mark={marks[2]} next={marks[3]} />
+      <div ref={marks[3]} />
+      <Honeypot mark={marks[3]} />
       <div className="chapter-hold" />
     </div>
   );
 }
 
 type Mark = React.RefObject<HTMLDivElement | null>;
+const full = { get: () => 1 };
 
 /** 0 to 1 while the chapter slides in. */
 const useEnter = (mark: Mark) => useScroll({ target: mark, offset: ["start end", "start start"] }).scrollYProgress;
@@ -34,7 +37,7 @@ function Cover({ next, className, children }: { next?: Mark; className: string; 
   const scale = useRange(covered, [0, 1], [1, 0.9]);
   const opacity = useRange(covered, [0.2, 1], [1, 0.35]);
   return (
-    <article className={`chapter ${className}`}>
+    <article className={`chapter ${className}${next ? "" : " is-last"}`}>
       <m.div className="chapter-in" style={on && next ? { scale, opacity } : undefined}>{children}</m.div>
       {!next && <div ref={own} />}
     </article>
@@ -84,14 +87,14 @@ function Oriel({ mark, next }: { mark: Mark; next: Mark }) {
   );
 }
 
-function FixCity({ mark }: { mark: Mark }) {
+function FixCity({ mark, next }: { mark: Mark; next: Mark }) {
   const on = useMotionOn();
   const t = useEnter(mark);
   const { scrollYProgress: hold } = useScroll({ target: mark, offset: ["start 0.5", "start -0.6"] });
   const y = useRange(t, [0.2, 1], [360, 0]);
   const rotate = useRange(t, [0.2, 1], [9, 0]);
   return (
-    <Cover className="is-fixcity">
+    <Cover next={next} className="is-fixcity">
       <div className="phone-wrap">
         <m.img className="phone" style={on ? { y, rotate } : undefined} {...pictures.phone} loading="lazy" alt="FixCity's home screen, with a button to report a problem and a grid of problem types." />
       </div>
@@ -101,6 +104,50 @@ function FixCity({ mark }: { mark: Mark }) {
       </div>
     </Cover>
   );
+}
+
+function Honeypot({ mark }: { mark: Mark }) {
+  const on = useMotionOn();
+  const t = useEnter(mark);
+  const { scrollYProgress: hold } = useScroll({ target: mark, offset: ["start 0.45", "start -0.5"] });
+  const y = useRange(t, [0.2, 1], [240, 0]);
+  return (
+    <Cover className="is-ssh-honeypot">
+      <Copy project={projects.honeypot} />
+      <m.div style={on ? { y } : undefined}>
+        <Session t={on ? hold : undefined} />
+      </m.div>
+    </Cover>
+  );
+}
+
+/** One visit, typed out as the page scrolls: the visitor's terminal, and the log beside it. Without motion it is all there. */
+export function Session({ t }: { t?: MotionValue<number> }) {
+  const { seen, logged } = honeypotSession;
+  const k = t ? "on" : "off";
+  return (
+    <div className="session">
+      <figure>
+        <figcaption>What the visitor sees</figcaption>
+        <ol>{seen.map((s, i) => <Line key={i + k} t={t} at={i} of={seen.length}>{s}</Line>)}</ol>
+      </figure>
+      <figure className="is-log">
+        <figcaption>What the log keeps</figcaption>
+        <ol>
+          {logged.map((l) => (
+            <Line key={l.text + k} t={t} at={l.at} of={seen.length}>
+              <b>{l.kind}</b> {l.text}{l.note && <i> {l.note}</i>}
+            </Line>
+          ))}
+        </ol>
+      </figure>
+    </div>
+  );
+}
+
+function Line({ t, at, of, children }: { t?: MotionValue<number>; at: number; of: number; children: React.ReactNode }) {
+  const opacity = useTransform(() => ((t ?? full).get() * (of + 1) > at + 0.5 ? 1 : 0.16));
+  return <m.li style={{ opacity }}>{children}</m.li>;
 }
 
 /** A report's four stages, filled in as the chapter scrolls. Without motion they are simply all filled in. */
@@ -114,7 +161,6 @@ export function Stages({ t }: { t?: MotionValue<number> }) {
   );
 }
 
-const full = { get: () => 1 };
 function Stage({ t, i, name, text }: { t?: MotionValue<number>; i: number; name: string; text: string }) {
   const n = fixcityStages.length;
   const fill = useTransform(() => {

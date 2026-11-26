@@ -5,14 +5,14 @@ import { Facts, ProjectPage, Story } from "../components/project-page";
 import { pageTitle, pictures, projects } from "../content";
 import { useMotionOn } from "../motion";
 
-const { fixcity, samepage } = projects;
+const { fixcity, honeypot } = projects;
 export const meta = () => [{ title: pageTitle(fixcity.name) }, { name: "description", content: fixcity.line }];
 
 export default function FixCity() {
   return (
     <ProjectPage
       project={fixcity}
-      next={samepage}
+      next={honeypot}
       still
       image={{ ...pictures.phone, alt: "FixCity's home screen, with a button to report a problem and a grid of problem types." }}
     >

@@ -1,6 +1,6 @@
 # Portfolio
 
-My portfolio site: Samepage, Oriel & Reed, FixCity and how I work.
+My portfolio site: Samepage, Oriel & Reed, FixCity, a small SSH honeypot and how I work.
 
 **[See it live](https://portfolio.mosalah-77.workers.dev)**
 
