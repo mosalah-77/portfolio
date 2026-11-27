@@ -38,7 +38,7 @@ npm run dev
 
 ## Security
 
-The site has no server code, forms, cookies or tracking. After each build, `scripts/finish-build.mjs` hashes every inline script into a Content Security Policy, so the browser runs only this site's own code and loads nothing from other sites. The other headers live in `headers.txt`.
+The site has no forms, cookies or tracking. Its only server code is `worker.js`, which sends the files in `/media/` in the byte ranges a browser asks for, so the video can seek. After each build, `scripts/finish-build.mjs` hashes every inline script into a Content Security Policy, so the browser runs only this site's own code and loads nothing from other sites. The other headers live in `headers.txt`.
 
 `wrangler deploy` builds and tests first, so a build without its headers can't ship. `.npmrc` blocks install scripts, pins exact versions and skips any release under seven days old.
 

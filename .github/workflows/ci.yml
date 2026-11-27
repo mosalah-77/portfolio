@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          # package.json needs npm 11.10 or newer and .npmrc enforces it; Node 26 ships with npm 11.
+          node-version: 26
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      # The tests read the built pages, so build first.
+      - run: npm run build
+      - run: npm test
+      - run: npm audit --audit-level=high
