@@ -1,4 +1,6 @@
 // Every fact, link and line of copy that could change lives here.
+/** For links that leave the site: a new tab that gets no handle on this one and no referrer. */
+export const newTab = { target: "_blank", rel: "noopener noreferrer" };
 const go = (key: string) => `https://go.mosalah-77.workers.dev/${key}`;
 
 export const person = {

@@ -35,6 +35,14 @@ test("project demo and code links go through the short-link domain", () => {
   }
 });
 
+test("links that leave the site open a new tab with noopener and noreferrer", () => {
+  for (const p of pages) {
+    const out = html(p).match(/<a [^>]*href="https?:[^>]*>/g);
+    assert.ok(out.length >= 2, p);
+    for (const tag of out) assert.match(tag, /(?=.*target="_blank")(?=.*rel="noopener noreferrer")/, `${p}: ${tag}`);
+  }
+});
+
 test("the honeypot has no demo to open, and says it never left my machine", () => {
   const page = html("ssh-honeypot");
   assert.ok(page.includes('href="https://go.mosalah-77.workers.dev/honeypot-code"'));
