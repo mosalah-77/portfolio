@@ -131,7 +131,7 @@ export const answers: QA[] = [
   {
     q: "Where does AI come in?",
     a: [
-      "I work with AI coding tools like Claude Code and Codex. They're fast, and they get things wrong.",
+      "I work with AI coding tools. They're fast, and they get things wrong.",
       "What to build, how it should work and whether it's ready are my decisions. I test everything myself.",
       "Each project's README explains how it was made.",
     ],
